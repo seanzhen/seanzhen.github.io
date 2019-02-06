@@ -10,6 +10,6 @@ Some information about you!
 
 A place to include any other types of information that you'd like to include about yourself.
 
-### Contact me
+### Contact me / 联系我
 
-[email@domain.com](mailto:email@domain.com)
+[seanzhen52@163.com](mailto:seanzhen52@163.com)
