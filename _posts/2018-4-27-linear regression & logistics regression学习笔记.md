@@ -92,11 +92,11 @@ title: linear regression & logistics regression学习笔记
 ## 梯度下降
 梯度下降法（gradient descent）是一种常用的一阶（first-order）优化方法，是求解无约束问题最简单、最经典的方法之一。
 考虑无约束优化问题$min_{x}f(x)$,其中f(x)为连续可微函数。若能构造一个序列$x^{0},x^{1},x^{2},...$,满足
-![](http://latex.codecogs.com/gif.latex?\\f(x^{t+1}<f(x^{t}),t=0,1,2,..)
+![](http://latex.codecogs.com/gif.latex?\f(x^{t+1}<f(x^{t}),t=0,1,2,..)
 则不断执行该过程即可收敛到局部极小点，欲满足上式，根据泰勒展示有
-![](http://latex.codecogs.com/gif.latex?\\f(x+\Delta x)\simeq f(x)+\Delta x^{T}\bigtriangledown f(x))
+![](http://latex.codecogs.com/gif.latex?\f(x+\Delta x)\simeq f(x)+\Delta x^{T}\bigtriangledown f(x))
 于是，欲满足$f(x+\Delta x)<f(x)$,可选择
-![](http://latex.codecogs.com/gif.latex?\\Delta x = -\gamma \bigtriangledown f(x))
+![](http://latex.codecogs.com/gif.latex?\\\Delta x = -\gamma \bigtriangledown f(x))
 其中步长$\gamma$是一个小常数，这就是梯度下降法
 ![](http://chuantu.biz/t5/60/1491633221x2890149782.png)
 
