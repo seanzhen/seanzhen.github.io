@@ -58,15 +58,15 @@ title: linear regression & logistics regression学习笔记
 ## Logistics Regression
 
 上面讨论了如何使用线性模型进行学习，但若要做的是分类任务该怎么办？可用广义线性模型：只需找一个单调可微函数将分类任务的真实标记y与线性回归的预测值联系起来
-考虑二分类任务，其输出标记![](http://latex.codecogs.com/gif.latex?\\\y \in {0,1})，而线性回归模型产生的预测值![](http://latex.codecogs.com/gif.latex?\\\z=w^{T}x+b)是实值，于是，我们需将实值z转换成0/1的值，最理想的即是“单位阶跃函数”
+考虑二分类任务，其输出标记![](http://latex.codecogs.com/gif.latex?\\y \in {0,1})，而线性回归模型产生的预测值![](http://latex.codecogs.com/gif.latex?\\z=w^{T}x+b)是实值，于是，我们需将实值z转换成0/1的值，最理想的即是“单位阶跃函数”
 ![](http://chuantu.biz/t5/60/1491631463x2890149782.png)
-上图的y可看出，单位阶跃函数不连续，因此不能直接用作广义线性模型中的![](http://latex.codecogs.com/gif.latex?\\\g^{-}(·))，于是我们希望找到能在一定程度上近似单位阶跃函数的“替代函数”，并希望它单调可微，logistics正式这样一个常用的替代函数：
+上图的y可看出，单位阶跃函数不连续，因此不能直接用作广义线性模型中的![](http://latex.codecogs.com/gif.latex?\\g^{-}(·))，于是我们希望找到能在一定程度上近似单位阶跃函数的“替代函数”，并希望它单调可微，logistics正式这样一个常用的替代函数：
 ![](http://latex.codecogs.com/gif.latex?\\\y = \frac{1}{1+e^{-z}})
 可以看出，logistics函数是一种“Sigmoid函数”，它将z值转化为一个接近0或者1的y值，并且其输出值在z=0附近变化很陡，将logistics函数作为$g^{-}(·)$带入可得，得到
-![](http://latex.codecogs.com/gif.latex?\\\y = \frac{1}{1+e^{-(w^{T}x+b)}})
+![](http://latex.codecogs.com/gif.latex?\\y = \frac{1}{1+e^{-(w^{T}x+b)}})
 可变化为
-![](http://latex.codecogs.com/gif.latex?\\\\frac{y}{1-y}=w^{T}x+b)
-若将y视为样本x作为正例的可能性，则1-y是其反例可能性，两者的比值![](http://latex.codecogs.com/gif.latex?\\\frac{y}{1-y})称为odds(几率），反映了x作为正例的相对可能性，对几率取对数则得到“对数几率”（logit）
+![](http://latex.codecogs.com/gif.latex?\\frac{y}{1-y}=w^{T}x+b)
+若将y视为样本x作为正例的可能性，则1-y是其反例可能性，两者的比值![](http://latex.codecogs.com/gif.latex?\\frac{y}{1-y})称为odds(几率），反映了x作为正例的相对可能性，对几率取对数则得到“对数几率”（logit）
 ![](http://latex.codecogs.com/gif.latex?\\\ln\frac{y}{1-y})
 由此可看出，上式实际上是在用线性回归模型的预测结果去逼近真实标记的logit，因此，其对应的模型就称为“logistics regression”.特别需要注意到，虽然它的名字是“回归”，但实际却是一种分类学习方法。这种方法有很多优点：
 
