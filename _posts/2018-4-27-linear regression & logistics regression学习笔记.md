@@ -3,7 +3,7 @@ layout: post
 title: linear regression & logistics regression学习笔记
 ---
 
-![_config.yml]({{ site.baseurl }}/images/test.png)
+![_config.yml]({{ site.baseurl }}/images/L2.png)
 
 
 
@@ -13,7 +13,7 @@ title: linear regression & logistics regression学习笔记
 ## Linear Regression
 ### 1.基本形式
 
-给定有d个属性描述的示例$$x=(x_{1};x_{2};...;x_{d})$$,其中$x_{i}$是x在第i个属性上的取值，线性模型试图学得一个通过属性的线性组合来进行预测的函数，即
+给定有d个属性描述的示例![](http://latex.codecogs.com/gif.latex?\\frac{1}{1+sin(x)})$x=(x_{1};x_{2};...;x_{d})$,其中$x_{i}$是x在第i个属性上的取值，线性模型试图学得一个通过属性的线性组合来进行预测的函数，即
 $$f(x)=w_{1}x_{1}+w_{2}x_{2}+...+w_{d}x_{1}+b$$
 一般用向量形式写成：
 $$f(x)=w^{T}x+b$$
