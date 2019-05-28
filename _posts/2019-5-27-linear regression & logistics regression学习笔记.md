@@ -13,10 +13,10 @@ title: linear regression & logistics regression学习笔记
 ## Linear Regression
 ### 1.基本形式
 
-给定有d个属性描述的示例![](http://latex.codecogs.com/gif.latex?\\\x=(x_{1};x_{2};...;x_{d})),其中![](http://latex.codecogs.com/gif.latex?\\\x_{i})是x在第i个属性上的取值，线性模型试图学得一个通过属性的线性组合来进行预测的函数，即
-![](http://latex.codecogs.com/gif.latex?\\\f(x)=w_{1}x_{1}+w_{2}x_{2}+...+w_{d}x_{1}+b)
+给定有d个属性描述的示例![](http://latex.codecogs.com/gif.latex?\\x=(x_{1};x_{2};...;x_{d})),其中![](http://latex.codecogs.com/gif.latex?\\\x_{i})是x在第i个属性上的取值，线性模型试图学得一个通过属性的线性组合来进行预测的函数，即
+![](http://latex.codecogs.com/gif.latex?\\f(x)=w_{1}x_{1}+w_{2}x_{2}+...+w_{d}x_{1}+b)
 一般用向量形式写成：
-![](http://latex.codecogs.com/gif.latex?\\\f(x)=w^{T}x+b)
+![](http://latex.codecogs.com/gif.latex?\\f(x)=w^{T}x+b)
 
 > * 线性模型形式简单、易于建模，但却稳藏着机器学习中一些重要的基本思想。
 > * 许多功能更为强大的非线性模型可在线性模型的基础上通过引入层级结构或高维映射而得。
@@ -34,7 +34,7 @@ title: linear regression & logistics regression学习笔记
 
 
 更一般的情形如开头的数据集D，样本由d个属性描述，此时我们试图学得
-![](http://latex.codecogs.com/gif.latex?\\\f(x_{i})=w^{T}x_{i}+b,使得f(x_{i})\simeq y_{i})
+![](http://latex.codecogs.com/gif.latex?\\f(x_{i})=w^{T}x_{i}+b,使得f(x_{i})\simeq y_{i})
 这称为“多元线性回归”
 ![](https://s21.postimg.org/fyph7d1g7/image.png)
 ![](https://s28.postimg.org/9vpqj162l/image.png)
@@ -42,16 +42,16 @@ title: linear regression & logistics regression学习笔记
 
 ### 3.对数线性回归
 
-线性回归虽简单，却又丰富的变化。例如对于样例![](http://latex.codecogs.com/gif.latex?\\\(x,y)，y\in R),当我们希望线性模型的预测值逼近真实标记y时，就得到了线性模型，为便于观察，我们把线性回归模型简写为
-![](http://latex.codecogs.com/gif.latex?\\\y = w^{T}x+b)
+线性回归虽简单，却又丰富的变化。例如对于样例![](http://latex.codecogs.com/gif.latex?\\(x,y)，y\in R),当我们希望线性模型的预测值逼近真实标记y时，就得到了线性模型，为便于观察，我们把线性回归模型简写为
+![](http://latex.codecogs.com/gif.latex?\\y = w^{T}x+b)
 可否令模型预测值逼近y的衍生物呢？譬如说，假设我们示例多对应的输出标记是在指数尺度上变化，那就可将输出标记的对数作为线性模型逼近的目标，即
-![](http://latex.codecogs.com/gif.latex?\\\lny=w^{T}x+b)
+![](http://latex.codecogs.com/gif.latex?\\lny=w^{T}x+b)
 这就是“对数线性回归”，它实际上是在试图让$e^{w^{T}x+b}$逼近y，在形式上仍是线性回归，但实质上已是在求取输入空间到输出空间的非线性函数映射，这里的对数函数起到了将线性回归模型的预测值与真实标记联系起来的作用。
 ![](http://chuantu.biz/t5/60/1491631003x2890149782.png)
 
 更一般地，考虑单调可微函数$g(·)$，令
-![](http://latex.codecogs.com/gif.latex?\\\y=g^{-1}(w^{T}x+b))
-这样得到的模型称为“广义线性模型”，其中函数$g(·)$称为“联系函数”（link function）。显然，对数线性回归是广义线性模型在![](http://latex.codecogs.com/gif.latex?\\\g(·)=ln(·))时的特例。
+![](http://latex.codecogs.com/gif.latex?\\y=g^{-1}(w^{T}x+b))
+这样得到的模型称为“广义线性模型”，其中函数$g(·)$称为“联系函数”（link function）。显然，对数线性回归是广义线性模型在![](http://latex.codecogs.com/gif.latex?\\g(·)=ln(·))时的特例。
 
 ------
 
@@ -61,13 +61,13 @@ title: linear regression & logistics regression学习笔记
 考虑二分类任务，其输出标记![](http://latex.codecogs.com/gif.latex?\\y \in {0,1})，而线性回归模型产生的预测值![](http://latex.codecogs.com/gif.latex?\\z=w^{T}x+b)是实值，于是，我们需将实值z转换成0/1的值，最理想的即是“单位阶跃函数”
 ![](http://chuantu.biz/t5/60/1491631463x2890149782.png)
 上图的y可看出，单位阶跃函数不连续，因此不能直接用作广义线性模型中的![](http://latex.codecogs.com/gif.latex?\\g^{-}(·))，于是我们希望找到能在一定程度上近似单位阶跃函数的“替代函数”，并希望它单调可微，logistics正式这样一个常用的替代函数：
-![](http://latex.codecogs.com/gif.latex?\\\y = \frac{1}{1+e^{-z}})
+![](http://latex.codecogs.com/gif.latex?\\y = \frac{1}{1+e^{-z}})
 可以看出，logistics函数是一种“Sigmoid函数”，它将z值转化为一个接近0或者1的y值，并且其输出值在z=0附近变化很陡，将logistics函数作为$g^{-}(·)$带入可得，得到
 ![](http://latex.codecogs.com/gif.latex?\\y = \frac{1}{1+e^{-(w^{T}x+b)}})
 可变化为
 ![](http://latex.codecogs.com/gif.latex?\\frac{y}{1-y}=w^{T}x+b)
 若将y视为样本x作为正例的可能性，则1-y是其反例可能性，两者的比值![](http://latex.codecogs.com/gif.latex?\\frac{y}{1-y})称为odds(几率），反映了x作为正例的相对可能性，对几率取对数则得到“对数几率”（logit）
-![](http://latex.codecogs.com/gif.latex?\\\ln\frac{y}{1-y})
+![](http://latex.codecogs.com/gif.latex?\\ln\frac{y}{1-y})
 由此可看出，上式实际上是在用线性回归模型的预测结果去逼近真实标记的logit，因此，其对应的模型就称为“logistics regression”.特别需要注意到，虽然它的名字是“回归”，但实际却是一种分类学习方法。这种方法有很多优点：
 
 - [x] 例如它是直接对分类可能性进行建模，无需事先假设数据分布，这样就避免了假设分布不准确多带来的问题
@@ -92,11 +92,11 @@ title: linear regression & logistics regression学习笔记
 ## 梯度下降
 梯度下降法（gradient descent）是一种常用的一阶（first-order）优化方法，是求解无约束问题最简单、最经典的方法之一。
 考虑无约束优化问题$min_{x}f(x)$,其中f(x)为连续可微函数。若能构造一个序列$x^{0},x^{1},x^{2},...$,满足
-![](http://latex.codecogs.com/gif.latex?\f(x^{t+1}<f(x^{t}),t=0,1,2,..)
+![](http://latex.codecogs.com/gif.latex?\\f(x^{t+1}<f(x^{t}),t=0,1,2,..)
 则不断执行该过程即可收敛到局部极小点，欲满足上式，根据泰勒展示有
-![](http://latex.codecogs.com/gif.latex?\f(x+\Delta x)\simeq f(x)+\Delta x^{T}\bigtriangledown f(x))
+![](http://latex.codecogs.com/gif.latex?\\f(x+\Delta x)\simeq f(x)+\Delta x^{T}\bigtriangledown f(x))
 于是，欲满足$f(x+\Delta x)<f(x)$,可选择
-![](http://latex.codecogs.com/gif.latex?\\\Delta x = -\gamma \bigtriangledown f(x))
+![](http://latex.codecogs.com/gif.latex?\\Delta x = -\gamma \bigtriangledown f(x))
 其中步长$\gamma$是一个小常数，这就是梯度下降法
 ![](http://chuantu.biz/t5/60/1491633221x2890149782.png)
 
