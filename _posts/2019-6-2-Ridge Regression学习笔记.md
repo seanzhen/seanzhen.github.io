@@ -3,6 +3,8 @@ layout: post
 title: Ridge Regression
 ---
 
+![_config.yml]({{ site.baseurl }}/images/ridge.png)
+
 ## Ridge Regression
 ### 概念
 
